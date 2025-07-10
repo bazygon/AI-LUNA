@@ -1,4 +1,6 @@
 flask
 flask-cors
-huggingface-hub
-gunicorn
+transformers
+torch
+
+
