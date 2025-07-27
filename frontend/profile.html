@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile | Diva AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: #f7c1e1;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: #f8b4d6;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .logout-button {
+      background: #f8b4d6;
+      color: #222;
+      padding: 0.4rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .profile-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #f8b4d6;
+    }
+
+    .profile-card p {
+      margin: 0.4rem 0;
+      font-size: 1.1rem;
+    }
+
+    .subscribe-button {
+      margin-top: 1.5rem;
+      background: #f8b4d6;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .subscribe-button:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      background: #0a0018;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Diva AI — Profile</h1>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="payments.html">Plans</a>
+      <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="profile-card">
+      <h2 id="usernameDisplay">Username</h2>
+      <p><strong>Subscription:</strong> <span id="subLevel">STANDARD</span></p>
+      <button class="subscribe-button" onclick="window.location.href='payments.html'">Upgrade Subscription</button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Diva AI · All rights reserved.
+  </footer>
+
+  <script>
+    // Populate profile data
+    const username = localStorage.getItem('username');
+    const subscription = localStorage.getItem('subscription');
+
+    if (!username) {
+      window.location.href = 'login.html';
+    } else {
+      document.getElementById('usernameDisplay').innerText = username;
+      document.getElementById('subLevel').innerText = subscription ? subscription.toUpperCase() : "STANDARD";
+    }
+
+    function logout() {
+      localStorage.removeItem('username');
+      localStorage.removeItem('subscription');
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,4 +1,335 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Companion — Choose Your Diva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    body.light-mode {
+      background: linear-gradient(135deg, #ffffff, #e0d7f2);
+      color: #222;
+    }
+    /* Age modal overlay */
+    #age-check-bg {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://www.dropbox.com/scl/fi/ofnt6izyomryjheklvb9u/9266a5e7-c4be-4054-a546-54a35d2577ef.png?rlkey=9mcxuj8a17i5z6defuybpkwum&st=jhd3iz9g&dl=1') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s;
+    }
+    #age-check-bg .overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: rgba(42,12,51,0.62);
+      z-index: 1;
+    }
+    #age-check-bg .age-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+      width: 98vw;
+      padding: 2.5rem 2rem 2.5rem 2rem;
+      box-sizing: border-box;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    #age-check-bg .age-title {
+      font-family: 'Playfair Display', serif;
+      color: #ffb6d6;
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0 0 0.2em 0;
+      text-shadow: 0 0 12px #c2005c99, 0 2px 8px #21003333;
+      letter-spacing: 0.03em;
+    }
+    #age-check-bg .age-desc {
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: #fff;
+      margin: 0 0 1em 0;
+      text-shadow: 0 0 6px #0005;
+    }
+    #age-check-bg .btn-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    #age-check-bg .btn18, #age-check-bg .btn-exit {
+      font-size: 1.15rem;
+      border: none;
+      border-radius: 16px;
+      padding: 0.85em 2.2em;
+      font-weight: bold;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 3px 18px 0 #42003938;
+    }
+    #age-check-bg .btn18 {
+      background: #ffd1e1;
+      color: #3a0039;
+    }
+    #age-check-bg .btn18:hover {
+      background: #ff69b4;
+      color: #fff;
+    }
+    #age-check-bg .btn-exit {
+      background: #301c3b;
+      color: #fff;
+    }
+    #age-check-bg .btn-exit:hover {
+      background: #f7c1e1;
+      color: #1e002a;
+    }
+    /* Hide main until accepted */
+    .hide-until-age {
+      display: none;
+    }
+    /* --- Main content styles --- */
+    .site-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      transition: filter 0.3s ease;
+    }
+    .hero-title {
+      text-align: center;
+      font-size: 3.2rem;
+      font-family: 'Playfair Display', serif;
+      color: #f7c1e1;
+      text-shadow: 0 0 15px #ff69b4aa;
+      margin-top: 2rem;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 3rem auto;
+      max-width: 1400px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      width: 300px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 40px rgba(255, 105, 180, 0.6);
+    }
+    .card img {
+      border-radius: 0.7rem;
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+    }
+    .name {
+      margin-top: 0.8rem;
+      font-size: 1.4rem;
+      color: #f8b4d6;
+      font-weight: bold;
+    }
+    nav.topbar {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav.topbar a {
+      color: #f8b4d6;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 0.5rem;
+      transition: color 0.3s;
+    }
+    nav.topbar a:hover {
+      color: #fff;
+    }
+    .logo img {
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-left a {
+      color: #bbb;
+      margin-right: 12px;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .footer-left a:hover {
+      text-decoration: underline;
+    }
+    .footer-center p {
+      margin: 0;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    .social-icons a {
+      display: inline-block;
+      margin: 0 10px;
+      transition: transform 0.3s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+    .social-icons img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+    footer {
+      background-color: #0a0018;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Age Verification FULLSCREEN MODAL -->
+  <div id="age-check-bg">
+    <div class="overlay-gradient"></div>
+    <div class="age-inner">
+      <div class="age-title">ADULTS<br>ONLY</div>
+      <div class="age-desc">
+        This website contains fictional, sensual, and AI-generated adult content (18+).<br>
+        By entering, you confirm that you are of legal age and consent to view this material.
+      </div>
+      <div class="btn-row">
+        <button class="btn18" onclick="acceptAge()">Yes, I am 18+</button>
+        <button class="btn-exit" onclick="window.location.href='https://google.com'">No, Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content (ukryty do czasu akceptacji) -->
+  <div id="main-content" class="hide-until-age">
+    <nav class="topbar">
+      <a href="index.html">Home</a>
+      <div class="logo">
+        <img src="https://www.dropbox.com/scl/fi/ev40h7fk6cmhfvzmdjiph/ChatGPT-Image-Jul-16-2025-11_53_48-PM.png?rlkey=6xqglfqe2wx8wmq885wd345lr&st=texaz44d&dl=1" alt="Logo">
+      </div>
+      <div>
+        <a href="login.html" id="loginLink">Login</a>
+        <a href="profile.html" id="profileLink" style="display:none;">Profile</a>
+      </div>
+    </nav>
+
+    <div class="site-container">
+      <section class="hero choose-diva">
+        <h1 class="hero-title">CHOOSE<br>YOUR DIVA</h1>
+        <div class="card-container">
+          <div class="card" onclick="selectDiva('lana','https://www.dropbox.com/scl/fi/uxqbfragcseqjuw4kbnsb/LANAA.jpg?dl=1')">
+            <img src="https://www.dropbox.com/scl/fi/uxqbfragcseqjuw4kbnsb/LANAA.jpg?dl=1" alt="Lana">
+            <div class="name">Lana</div>
+          </div>
+          <div class="card" onclick="selectDiva('luna','https://www.dropbox.com/scl/fi/lm4tx3mtv1d20iv1v2mr5/AI-LUNA.jpg?dl=1')">
+            <img src="https://www.dropbox.com/scl/fi/lm4tx3mtv1d20iv1v2mr5/AI-LUNA.jpg?dl=1" alt="Luna">
+            <div class="name">Luna</div>
+          </div>
+          <div class="card" onclick="selectDiva('charlotte','https://www.dropbox.com/scl/fi/g9obxwim844frr3mwou4o/szarlot.jpg?dl=1')">
+            <img src="https://www.dropbox.com/scl/fi/g9obxwim844frr3mwou4o/szarlot.jpg?dl=1" alt="Charlotte">
+            <div class="name">Charlotte</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-left">
+          <a href="index.html">Home</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+          <a href="guidelines.html">Guidelines</a>
+        </div>
+        <div class="footer-center">
+          <p>© 2025 Diva AI · Powered by AI technology</p>
+        </div>
+        <div class="social-icons">
+          <a href="#"><img src="https://www.dropbox.com/scl/fi/mrgjbpyqc7qc4zsws941d/discord-round-color-icon.ico?dl=1" alt="Discord"></a>
+          <a href="#"><img src="https://www.dropbox.com/scl/fi/vxnzsckag80crsxgq3ppf/1-0fa71a37.ico?dl=1" alt="X"></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Accept function + store session
+    function acceptAge() {
+      sessionStorage.setItem('is18', 'yes'); // Możesz użyć localStorage jeśli chcesz na zawsze
+      document.getElementById('age-check-bg').style.display = 'none';
+      document.getElementById('main-content').classList.remove('hide-until-age');
+    }
+    function selectDiva(divaKey, imageUrl) {
+      localStorage.setItem("divaKey", divaKey);
+      localStorage.setItem("divaAvatar", imageUrl);
+      window.location.href = `chat.html?diva=${encodeURIComponent(divaKey)}`;
+    }
+    // Profile/Login display
+    window.onload = function() {
+      // Jeśli zaakceptowano, chowaj overlay i pokazuj stronę
+      if (sessionStorage.getItem('is18') === 'yes') {
+        document.getElementById('age-check-bg').style.display = 'none';
+        document.getElementById('main-content').classList.remove('hide-until-age');
+      }
+      // Login/Profile toggle
+      const username = localStorage.getItem('username');
+      if (username) {
+        var loginLink = document.getElementById("loginLink");
+        var profileLink = document.getElementById("profileLink");
+        if (loginLink) loginLink.style.display = "none";
+        if (profileLink) profileLink.style.display = "inline-block";
+      }
+    };
+  </script>
+=======
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -12,5 +343,6 @@
     <button id="send-button">Wyślij</button>
   </div>
   <script src="main.js"></script>
+>>>>>>> 0bbfa77aa1e33e9faf44f7bc948d05eb6373f508
 </body>
 </html>

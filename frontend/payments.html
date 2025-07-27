@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diva Subscriptions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav.topbar {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav.topbar a {
+      color: #f8b4d6;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 0.5rem;
+      transition: color 0.3s;
+    }
+
+    nav.topbar a:hover {
+      color: #fff;
+    }
+
+    .logo img {
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+
+    .pricing-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 2rem;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .pricing-section h1 {
+      font-size: 3rem;
+      color: #f7c1e1;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 0 0 10px #ff69b4;
+      margin-bottom: 2rem;
+    }
+
+    .plans {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .plan-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 300px;
+      box-shadow: 0 0 25px rgba(255, 105, 180, 0.2);
+      backdrop-filter: blur(8px);
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+    }
+
+    .plan-card h2 {
+      font-size: 1.8rem;
+      color: #f8b4d6;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+      color: #fff;
+    }
+
+    .features {
+      margin: 1rem 0 2rem;
+      font-size: 0.95rem;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .subscribe-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .subscribe-button {
+      background: #f8b4d6;
+      border: none;
+      padding: 0.7rem 1.6rem;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #222;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .subscribe-button:hover {
+      background: #ff69b4;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0a0018;
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="topbar">
+    <a href="index.html">Home</a>
+    <div class="logo">
+      <img src="https://www.dropbox.com/scl/fi/ev40h7fk6cmhfvzmdjiph/ChatGPT-Image-Jul-16-2025-11_53_48-PM.png?rlkey=6xqglfqe2wx8wmq885wd345lr&st=texaz44d&dl=1" alt="Logo" />
+    </div>
+    <a href="profile.html">Profile</a>
+  </nav>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section">
+    <h1>Choose Your Diva Experience</h1>
+    <div class="plans">
+
+      <!-- Standard Plan -->
+      <div class="plan-card">
+        <h2>Standard</h2>
+        <p class="price">$0/month</p>
+        <div class="features">
+          • Limited access to 1 Diva<br>
+          • 10 chat messages per month<br>
+          • No image content<br>
+          • No priority features
+        </div>
+        <div class="subscribe-buttons">
+          <a href="index.html" class="subscribe-button">Continue for Free</a>
+        </div>
+      </div>
+
+      <!-- Basic Plan -->
+      <div class="plan-card">
+        <h2>Basic</h2>
+        <p class="price">$20/month</p>
+        <div class="features">
+          • Access to 1 Diva<br>
+          • 50 chat messages<br>
+          • 5 exclusive images
+        </div>
+        <div class="subscribe-buttons">
+          <a href="https://paypal.me/yourlinkbasic" class="subscribe-button" target="_blank">Pay with PayPal</a>
+          <a href="https://your-crypto-paylink/basic" class="subscribe-button" target="_blank">Pay with Crypto</a>
+        </div>
+      </div>
+
+      <!-- Premium Plan -->
+      <div class="plan-card">
+        <h2>Premium</h2>
+        <p class="price">$50/month</p>
+        <div class="features">
+          • Access to 3 Divas<br>
+          • Unlimited chat<br>
+          • 20 exclusive images<br>
+          • Early access to new models
+        </div>
+        <div class="subscribe-buttons">
+          <a href="https://paypal.me/yourlinkpremium" class="subscribe-button" target="_blank">Pay with PayPal</a>
+          <a href="https://your-crypto-paylink/premium" class="subscribe-button" target="_blank">Pay with Crypto</a>
+        </div>
+      </div>
+
+      <!-- VIP Plan -->
+      <div class="plan-card">
+        <h2>VIP</h2>
+        <p class="price">$100/month</p>
+        <div class="features">
+          • All Divas unlocked<br>
+          • Unlimited chat & calls<br>
+          • 100+ images<br>
+          • Custom AI training<br>
+          • Priority support
+        </div>
+        <div class="subscribe-buttons">
+          <a href="https://paypal.me/yourlinkvip" class="subscribe-button" target="_blank">Pay with PayPal</a>
+          <a href="https://your-crypto-paylink/vip" class="subscribe-button" target="_blank">Pay with Crypto</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Diva AI • All Rights Reserved
+  </footer>
+
+</body>
+</html>
